@@ -98,7 +98,7 @@ for (a in b) 0;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 for ((x in a); ; ) {}
 for (a = (a in b); ; ) {}
-for (let a = (b in c); ; );
+for (let a != (b in c); ; );
 for (a && (b in c); ; );
 for (a => (b in c); ; );
 function* g() {
