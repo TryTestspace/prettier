@@ -12,6 +12,7 @@ env:
 matrix:
   fast_finish: true
 before_install:
+  - if [ "${TRAVIS_NODE_VERSION}" = "4" ]; then npm install -g yarn@1.12.3; fi # Install Node v4 compatible Yarn
   - mkdir -p $HOME/bin
   - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
   - testspace config url $TS_ORG.testspace.com
