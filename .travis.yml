@@ -12,6 +12,7 @@ env:
 matrix:
   fast_finish: true
 before_install:
+  - if [ "${TRAVIS_NODE_VERSION}" = "4" ]; then npm install -g yarn@1.12.3; fi # Install Node v4 compatible Yarn
   - mkdir -p $HOME/bin
   - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
   - testspace config url $TS_ORG.testspace.com
@@ -20,7 +21,7 @@ install:
 before_script:
   - yarn check-deps
 script:
-  - if [ "${NODE_ENV}" = "development" ]; then AST_COMPARE=1 yarn test -- --runInBand; fi
+  - if [ "${NODE_ENV}" = "development" ]; then AST_COMPARE=1 yarn test --runInBand; fi
   - if [ "${NODE_ENV}" = "development" ]; then yarn codecov; fi
 after_script:
   - testspace [node-${TRAVIS_NODE_VERSION}]junit.xml{.} --link=codecov
